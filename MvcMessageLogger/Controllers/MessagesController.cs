@@ -31,9 +31,9 @@ namespace MvcMessageLogger.Controllers
         public IActionResult Create(int userId, Message message)
         {
             var user = _context.Users.Where(u =>u.Id == userId).Include(u => u.Messages).First();
-            var newMessage = new Message(message.Content);
+           // var newMessage = new Message(message.Content);
             message.TimeCreated();
-            user.Messages.Add(newMessage);
+            user.Messages.Add(message);
             _context.SaveChanges();
 
             return Redirect($"/users/account/{userId}");
