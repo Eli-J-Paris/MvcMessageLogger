@@ -1,0 +1,11 @@
+﻿@model User
+
+<h1>Welcome @Model.UserName to your Chirp page</h1>
+<p class="p-5 bg-primary">add a message</p>
+
+@foreach(var message in Model.Messages)
+{
+    <p>@message.Content</p>
+}
+
+<a href="/users/account/@Model.Id/newmessage">Add message</a>

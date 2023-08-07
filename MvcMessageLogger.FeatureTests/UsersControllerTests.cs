@@ -89,23 +89,6 @@ namespace MvcMessageLogger.FeatureTests
             Assert.Contains("<input type=\"text\" id=\"UserName\" name=\"UserName\" />", html);
         }
 
-        [Fact]
-        public async Task NewError_DisplaysFormAndErrorMessage()
-        {
-            var client = _factory.CreateClient();
-
-            var response = await client.GetAsync($"/users/newaccount/error");
-            response.EnsureSuccessStatusCode();
-
-            var html = await response.Content.ReadAsStringAsync();
-
-            Assert.Contains("<form method=\"post\" action=\"/users/newaccount\">", html);
-            Assert.Contains("<input type=\"password\" id=\"Password\" name=\"Password\" />", html);
-            Assert.Contains("<input type=\"email\" id=\"Email\" name=\"Email\" />", html);
-            Assert.Contains("<input type=\"text\" id=\"UserName\" name=\"UserName\" />", html);
-
-            Assert.Contains("An account with that email address already exists", html);
-        }
 
         [Fact]
         public async Task Create_AddsUserToDataBase()
@@ -138,19 +121,7 @@ namespace MvcMessageLogger.FeatureTests
             Assert.Contains("<form method=\"post\" action=\"/users/login/\">", html);
         }
 
-        [Fact]
-        public async Task LoginError_DisplaysLoginPageWithError()
-        {
-            var client = _factory.CreateClient();
-
-            var response = await client.GetAsync($"/users/login/error");
-            response.EnsureSuccessStatusCode();
-
-            var html = await response.Content.ReadAsStringAsync();
-
-            Assert.Contains("<form method=\"post\" action=\"/users/login/\">", html);
-            Assert.Contains("Email or password not found", html);
-        }
+        
 
         [Fact]
         public async Task Signin_RedirectsUserToAccountPage()

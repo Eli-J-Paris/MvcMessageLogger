@@ -1,0 +1,7 @@
+﻿@model User
+<h1>Chirp</h1>
+<form method="post" action="/users/account/@Model.Id">
+    <label for="Content">Add Message</label>
+    <textarea id="Content" name="Content" maxlength="255"></textarea>
+    <button type="submit">Chirp</button>
+</form>

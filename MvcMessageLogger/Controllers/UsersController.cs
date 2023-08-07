@@ -1,4 +1,5 @@
 ﻿using Microsoft.AspNetCore.Mvc;
+using Microsoft.EntityFrameworkCore;
 using MvcMessageLogger.DataAccess;
 using MvcMessageLogger.Models;
 
@@ -21,13 +22,13 @@ namespace MvcMessageLogger.Controllers
 
 
         [Route("/users/account/{id:int}")]
-        public IActionResult Show(int id)
+        public IActionResult UserHome(int id)
         {
-            var user = _context.Users.Find(id);
+            var user = _context.Users.Where(u=> u.Id == id).Include(u =>u.Messages).First();
             return View(user);
         }
 
-            [Route("/users/newaccount")]
+        [Route("/users/newaccount")]
         public IActionResult New(string? error)
         {
             if (error == "true")
@@ -38,12 +39,6 @@ namespace MvcMessageLogger.Controllers
             return View();
         }
 
-
-        [Route("/users/newaccount/error")]
-        public IActionResult NewError()
-        {
-            return View();
-        }
 
         [HttpPost]
         [Route("/users/newaccount")]
@@ -82,11 +77,6 @@ namespace MvcMessageLogger.Controllers
             return View();
         }
 
-        [Route("/users/login/error")]
-        public IActionResult LoginError()
-        {
-            return View();
-        }
 
         [HttpPost]
         [Route("/users/login")]
