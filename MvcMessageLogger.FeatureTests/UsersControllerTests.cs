@@ -131,6 +131,8 @@ namespace MvcMessageLogger.FeatureTests
 
 
             var user = new User { UserName = "Usopp", Email = "Usopp@hotmail", Password = "sniperking" };
+            var message = new Message { Content = "hello" };
+            user.Messages.Add(message);
             context.Users.Add(user);
             context.SaveChanges();
 
