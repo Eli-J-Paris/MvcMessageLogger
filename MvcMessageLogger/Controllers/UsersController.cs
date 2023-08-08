@@ -139,10 +139,13 @@ namespace MvcMessageLogger.Controllers
 
 
         [Route("/users/account/{userId:int}/feed")]
-        public IActionResult Feed()
+        public IActionResult Feed(int userId)
         {
             var users = _context.Users.Include(u => u.Messages).ToList();
             users = _context.GenerateRandomLoop(users);
+            users = users.Where(u => u.Id != userId).ToList();
+            ViewData["ProfileID"] = userId;
+
             return View(users);
         }
     }

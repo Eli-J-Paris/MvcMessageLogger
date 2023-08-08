@@ -1,6 +1,20 @@
 ﻿@model List<User>
-
-@foreach(var User in Model)
+<h1 class="text-center" style="margin-top:20px;">Discover What Other People Are Chirping About</h1>
+@foreach (var user in Model)
 {
-    
+    @foreach(var message in user.Messages)
+    {
+        <div>
+            <br />
+            <figure class="text-center">
+                <blockquote class="blockquote">
+                    <p class="mb-0">"@message.Content"</p>
+                </blockquote>
+                <figcaption class="blockquote-footer">
+                    @message.CreatedAt.ToLocalTime().ToShortTimeString() <cite title="Source Title">@user.UserName</cite>
+                </figcaption>
+            </figure>
+            <br />
+        </div>
+    }
 }

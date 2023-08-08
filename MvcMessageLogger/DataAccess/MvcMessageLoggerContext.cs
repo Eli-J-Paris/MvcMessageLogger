@@ -41,9 +41,11 @@ namespace MvcMessageLogger.DataAccess
                     hour = h.Key;
                 }
             }
-            List<int> data = new List<int>();
-            data.Add(hour);
-            data.Add(mostmessage);
+            List<int> data = new List<int>
+            {
+                hour,
+                mostmessage
+            };
             return data;
         }
 
