@@ -2,8 +2,38 @@
     bool? failedSignin = ViewData["FailedSignin"] as bool?;
 }
 
-<h1>Create Account</h1>
-<form method="post" action="/users/newaccount">
+<link rel="stylesheet" href="~/css/VaporTheme.css" />
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.1/dist/js/bootstrap.bundle.min.js" integrity="sha384-HwwvtgBNo3bZJJLYd8oVXjrBZt8cqVSpeBNS5n7C8IVInixGAoxmnlMuBnhbgrkm" crossorigin="anonymous"></script>
+
+@{
+    Layout = null;
+}
+<div class="col-md-6 offset-lg-3 align-middle" style="margin-top: 25px">
+    <h1 class=" justify-content-center">Create Chirp Account</h1>
+    <form method="post" action="/users/newaccount">
+        <div class="form-group">
+            <label for="exampleInputPassword1" class="form-label mt-4">Username</label>
+            <input type="text" class="form-control" id="exampleInputPassword1" placeholder="Password" autocomplete="off" fdprocessedid="yrgqom" name="UserName">
+        </div>
+        <div class="form-group  ">
+            <label for="exampleInputEmail1" class="form-label mt-4">Email address</label>
+            <input type="email" class="form-control" id="exampleInputEmail1" aria-describedby="emailHelp" placeholder="Enter email" fdprocessedid="kydy1k" name="Email">
+        </div>
+        <div class="form-group">
+            <label for="exampleInputPassword1" class="form-label mt-4">Password</label>
+            <input type="password" class="form-control" id="exampleInputPassword1" placeholder="Password" autocomplete="off" fdprocessedid="yrgqom" name="Password">
+        </div>
+        <br />
+        @if (failedSignin == true)
+        {
+            <p class="text-danger">An account with that email address already exists</p>
+        }
+        <div class="d-grid gap-2">
+            <button class="btn btn-lg btn-primary" type="submit" fdprocessedid="01ckw">Create Account</button>
+        </div>
+    </form>
+</div>
+@*<form method="post" action="/users/newaccount">
     <div>
         <label for="UserName">UserName</label>
         <input type="text" id="UserName" name="UserName" />
@@ -16,11 +46,13 @@
         <label for="Password">Password</label>
         <input type="password" id="Password" name="Password" />
     </div>
-    @if(failedSignin == true)
-    {
-        <p class="text-danger">An account with that email address already exists</p>
-    }
+        @if (failedSignin == true)
+        {
+            <p class="text-danger">An account with that email address already exists</p>
+        }
     <div>
         <button type="submit">Submit</button>
     </div>
-</form>
+</form>*@
+
+
