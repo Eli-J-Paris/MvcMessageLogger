@@ -1,7 +1,5 @@
 ﻿@*Stats Index*@
-@model List<User>
-
-    
+@model List<User>    
 @{
     string listOfWords = string.Empty;
 
@@ -17,8 +15,6 @@
     string[] words = listOfWords.Split(delimiterChars);
 
     var mostPopular = words.GroupBy(s => s).OrderByDescending(g => g.Count());
-
-
 }
 
 @*@{
