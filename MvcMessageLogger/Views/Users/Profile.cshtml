@@ -1,0 +1,30 @@
+﻿@model User
+<div style="margin-top:20px; margin-bottom:20px;">
+    <h1 style="display:inline-block;margin-right:10px;">@Model.UserName's Profile Page</h1>
+</div>
+
+<div>
+    <h2>Name</h2>
+    <p class="mb-0">@Model.Name</p>
+</div>
+<br />
+<div>
+    <h2>Birth Day</h2>
+    <p class="mb-0">@Model.BirthDay</p>
+</div>
+<br />
+<div>
+    <h2>Location</h2>
+    <p class="mb-0">@Model.Location</p>
+</div>
+<br />
+<div>
+    <h2>Bio</h2>
+    <p class="mb-0">@Model.Bio</p>
+</div>
+<br />
+<div>
+    <a href="/users/account/@Model.Id/profile/update">
+        <button type="button" class="btn btn-primary btn-lg" fdprocessedid="0bpb3">Update Profile</button>
+    </a>
+</div>

@@ -25,7 +25,9 @@ namespace MvcMessageLogger.Controllers
         public IActionResult UserHome(int id)
         {
             var user = _context.Users.Where(u=> u.Id == id).Include(u =>u.Messages).First();
+            ViewData["ProfileID"] = id;
             return View(user);
+
         }
 
         [Route("/users/newaccount")]
@@ -100,6 +102,48 @@ namespace MvcMessageLogger.Controllers
             {
                 return Redirect("/users/login/?error=true");
             }
+        }
+
+        [Route("/users/account/{userId:int}/profile")]
+        public IActionResult Profile(int userId)
+        {
+            var user = _context.Users.Where(u => u.Id == userId).Include(u => u.Messages).First();
+            ViewData["ProfileID"] = userId;
+            return View(user);
+        }
+
+
+        [Route("/users/account/{userId:int}/profile/update")]
+        public IActionResult UpdateProfile(int userId)
+        {
+            var user = _context.Users.Where(u => u.Id == userId).Include(u => u.Messages).First();
+            ViewData["ProfileID"] = userId;
+
+            return View(user);
+        }
+
+
+        [HttpPost]
+        [Route("/users/account/{userId:int}/profile")]
+        public IActionResult ProfileUpdater(User user, int userId)
+        {
+            user.Id = userId;
+            _context.Users.Update(user);
+            _context.SaveChanges();
+            //ViewData["ProfileID"] = userId;
+
+            return Redirect($"/users/account/{user.Id}/profile");
+        }
+
+
+
+
+        [Route("/users/account/{userId:int}/feed")]
+        public IActionResult Feed()
+        {
+            var users = _context.Users.Include(u => u.Messages).ToList();
+            users = _context.GenerateRandomLoop(users);
+            return View(users);
         }
     }
 }

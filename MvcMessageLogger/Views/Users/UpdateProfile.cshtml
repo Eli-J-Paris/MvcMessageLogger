@@ -1,0 +1,28 @@
+﻿@model User
+<h1> Update Your Profile</h1>
+<form method="post" action="/users/account/@Model.Id/profile">
+    <div class="form-group">
+        <label for="Name" class="form-label mt-4">Name</label>
+        <input type="text" value="@Model.Name" name="Name" class="form-control" id="Name" aria-describedby="emailHelp" placeholder="Enter name" fdprocessedid="6zqxfk">
+    </div>
+    <div class="form-group">
+        <label for="Birthday" class="form-label mt-4">Birthday</label>
+        <input type="datetime" value="@Model.BirthDay" name="Birthday" class="form-control" id="Birthday" aria-describedby="emailHelp" placeholder="Enter Birthday" fdprocessedid="6zqxfk">
+    </div>
+    <div class="form-group">
+        <label for="Location" class="form-label mt-4">Location</label>
+        <input type="text" value="@Model.Location" name="Location" class="form-control" id="Location" aria-describedby="emailHelp" placeholder="Enter Location" fdprocessedid="6zqxfk">
+    </div>
+    <div class="form-group">
+        <label for="Bio" class="form-label mt-4">Bio</label>
+        <textarea class="form-control" name="Bio" id="Bio" maxlength="255" rows="3">@Model.Bio</textarea>
+    </div>
+    <input readonly type="hidden" value="@Model.UserName" name="UserName" />
+    <input readonly type="hidden" value="@Model.Email" name="Email" />
+    <input readonly type="hidden" value="@Model.Password" name="Password" />
+    <br />
+    <button type="submit" class="btn btn-primary" fdprocessedid="m3vyg">Save Changes</button>
+    <a href="/users/account/@Model.Id/profile" style="display:inline-block; float:right;">
+        <button type="button" class="btn btn-primary " fdprocessedid="0bpb3">Discard Changes</button>
+    </a>
+</form>
