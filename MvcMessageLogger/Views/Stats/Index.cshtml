@@ -1,0 +1,36 @@
+﻿@*Stats Index*@
+@model List<User>
+
+    
+@{
+    string listOfWords = string.Empty;
+
+    foreach (var user in Model)
+    {
+        foreach (var word in user.Messages)
+        {
+            listOfWords += " " + word.Content.ToLower();
+        }
+
+    }
+    char[] delimiterChars = { ' ', ',', '.', ':', '\t' };
+    string[] words = listOfWords.Split(delimiterChars);
+
+    var mostPopular = words.GroupBy(s => s).OrderByDescending(g => g.Count());
+
+
+}
+
+@*@{
+    var mostPopularWord = ViewData["MostPopularWord"] ;
+}*@
+@{
+    List<int> hourData = ViewData["HourWithMostMessages"] as List<int>;
+}
+
+<p> The most Popular word is: @mostPopular.First().Key</p>
+<p> the hour with most messages is @hourData.First():00 with @hourData.Last() messages written</p>
+@foreach(var word in mostPopular)
+{
+    <p>@word.Key: @word.Count()</p>
+}

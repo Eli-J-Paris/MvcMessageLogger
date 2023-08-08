@@ -1,7 +1,10 @@
 ﻿@model User
 <h1>Chirp</h1>
 <form method="post" action="/users/account/@Model.Id">
-    <label for="Content">Add Message</label>
-    <textarea id="Content" name="Content" maxlength="255"></textarea>
+    <div class="form-group">
+        <label for="exampleTextarea" class="form-label mt-4">Example textarea</label>
+        <textarea class="form-control" id="exampleTextarea" rows="3" name="Content"></textarea>
+    </div>
     <button type="submit">Chirp</button>
 </form>
+

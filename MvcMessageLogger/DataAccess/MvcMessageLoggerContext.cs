@@ -10,5 +10,6 @@ namespace MvcMessageLogger.DataAccess
 
         public MvcMessageLoggerContext(DbContextOptions<MvcMessageLoggerContext> options)
             : base(options) { }
+
     }
 }
