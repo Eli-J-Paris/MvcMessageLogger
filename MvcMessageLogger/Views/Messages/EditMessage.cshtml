@@ -1,0 +1,17 @@
+﻿@model User
+<form method="post" action="/users/account/@Model.Id/edit/@Model.Messages.First().Id">
+    <div class="col-md-6 offset-lg-3 " style="margin-top: 50px">
+        <h1 class="text-center" >Edit Chirp</h1>
+        <textarea class="form-control" id="exampleTextarea" rows="5" maxlength="255" name="Content">@Model.Messages.First().Content</textarea>
+    </div>
+    <br />
+    <div class="d-grid gap-2">
+        <button type="submit" class="btn btn-lg btn-primary col-md-6 offset-lg-3 align-middle" type="button" fdprocessedid="k0n2h">Update Chirp</button>
+    </div>
+    @*<input readonly type="hidden" name="CreatedAt" value="@Model.CreatedAt" />*@
+</form>
+<br />
+<br />
+<form method="post" action="/users/account/@Model.Id/delete/@Model.Messages.First().Id">
+    <button type="submit" class="btn btn-lg btn-primary col-md-6 offset-lg-3 align-middle" type="button" fdprocessedid="k0n2h">Delete Chirp</button>
+</form>

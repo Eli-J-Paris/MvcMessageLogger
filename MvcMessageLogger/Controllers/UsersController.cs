@@ -135,9 +135,6 @@ namespace MvcMessageLogger.Controllers
             return Redirect($"/users/account/{user.Id}/profile");
         }
 
-
-
-
         [Route("/users/account/{userId:int}/feed")]
         public IActionResult Feed(int userId)
         {
