@@ -148,5 +148,23 @@ namespace MvcMessageLogger.Controllers
 
             return View(users);
         }
+
+
+        [Route("/users/account/{userId:int}/deleteaccount")]
+        public IActionResult DeletePage(int userId)
+        {
+            var user = _context.Users.Find(userId);
+            return View(user);
+        }
+
+        [HttpPost]
+        [Route("/users/{userId:int}/delete")]
+        public IActionResult RemoveUser(int userId)
+        {
+            var user = _context.Users.Where(u => u.Id ==userId).Include( u => u.Messages).First();
+            _context.Users.Remove(user);
+            _context.SaveChanges();
+            return Redirect("/users/login");
+        }
     }
 }
