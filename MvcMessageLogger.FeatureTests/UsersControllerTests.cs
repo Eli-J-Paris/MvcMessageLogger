@@ -52,7 +52,7 @@ namespace MvcMessageLogger.FeatureTests
         }
 
         [Fact]
-        public async Task Show_DisplaysUsersPage()
+        public async Task UserHome_DisplaysUsersPage()
         {
             var context = GetDbContext();
             var client = _factory.CreateClient();
@@ -150,5 +150,52 @@ namespace MvcMessageLogger.FeatureTests
 
             Assert.Contains("Usopp",html);
         }
+
+        [Fact]
+        public async Task Profile_DisplaysUsersProfilePage()
+        {
+            var context = GetDbContext();
+            var client = _factory.CreateClient();
+
+            var user = new User { UserName = "eli", Email = "eli@Yahoo.com", Password = "password123" };
+            var user2 = new User { UserName = "Zoro", Email = "Zoro@Yahoo.com", Password = "sword" };
+
+            context.Users.Add(user);
+            context.Users.Add(user2);
+            context.SaveChanges();
+
+            var response = await client.GetAsync($"/users/account/{user.Id}/profile");
+            response.EnsureSuccessStatusCode();
+
+            var html = await response.Content.ReadAsStringAsync();
+
+            Assert.Contains(user.UserName, html);
+            Assert.Contains("profile",html);
+            Assert.DoesNotContain(user2.UserName, html);
+        }
+
+        [Fact]
+        public async Task UpdateProfile_DisplaysUsersUpdatePageforUserProfile()
+        {
+            var context = GetDbContext();
+            var client = _factory.CreateClient();
+
+            var user = new User { UserName = "eli", Email = "eli@Yahoo.com", Password = "password123" };
+            var user2 = new User { UserName = "Zoro", Email = "Zoro@Yahoo.com", Password = "sword" };
+
+            context.Users.Add(user);
+            context.Users.Add(user2);
+            context.SaveChanges();
+
+            var response = await client.GetAsync($"/users/account/{user.Id}/profile/update");
+            response.EnsureSuccessStatusCode();
+
+            var html = await response.Content.ReadAsStringAsync();
+
+            Assert.Contains(user.UserName, html);
+            Assert.Contains("Update Your Profile", html);
+            Assert.DoesNotContain(user2.UserName, html);
+        }
+
     }
 }
