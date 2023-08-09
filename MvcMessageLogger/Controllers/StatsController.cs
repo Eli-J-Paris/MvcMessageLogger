@@ -21,6 +21,7 @@ namespace MvcMessageLogger.Controllers
             string mostPopularWord = _context.MostPopularWord();
             ViewData["MostPopularWord"] = mostPopularWord;
             ViewData["HourWithMostMessages"] = _context.HourWithMostMessages();
+            ViewData["MostActiveUser"] = _context.MostActiveUser();
             return View(users);
 
         }

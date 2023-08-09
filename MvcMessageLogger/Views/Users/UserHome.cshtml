@@ -1,8 +1,5 @@
 ﻿@*add a view data for weather or not one can add a new messageso when people vist others pages they gucci*@
-@*@{
-    Layout = null;
-}
-<link rel="stylesheet" href="~/css/VaporTheme.css" />*@
+
 @model User
 
 <div style="margin-top:20px; margin-bottom:20px;">
@@ -11,6 +8,17 @@
         <button type="button" class="btn btn-primary btn-lg" fdprocessedid="0bpb3">ChIrp</button>
      </a>
 </div>
+
+@if(Model.Messages.Count == 0)
+{
+    <h4 class="text-center">
+         Hello and a big virtual high-five from all of us at Chirp! Thank you for making an account with us! We're thrilled to have you join our buzzing community of Chirpers, trendsetters, and digital storytellers.
+
+         Get ready to share your thoughts, explore new perspectives, and connect with people from all walks of life. Whether you're here to laugh, learn, or simply express yourself in 255 characters or less, this is your canvas to paint with words and ideas.
+    </h4>
+    <br />
+    <h4 class="text-center">When you are ready write a Chirp for the world to see. . . and dont forget to update your profile!</h4>
+}
 
 @foreach(var message in Model.Messages)
 {

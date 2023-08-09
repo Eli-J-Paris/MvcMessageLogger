@@ -22,12 +22,38 @@
 }
 @{
     List<int> hourData = ViewData["HourWithMostMessages"] as List<int>;
+    List<string> mostActiveUser = ViewData["MostActiveUser"] as List<string>;
 }
 
-<p>@mostPopularWord</p>
-<p> The most Popular word is: @mostPopular.First().Key</p>
-<p> the hour with most messages is @hourData.First():00 with @hourData.Last() messages written</p>
-@foreach(var word in mostPopular)
+@*<p>@mostPopularWord</p>
+
+
+*@
+
+<table class="table table-hover" style="margin-top:25px;">
+    <thead>
+        <tr>
+            <th scope="col">Stats</th>
+            <th scope="col">Most Popular Word</th>
+            <th scope="col">Hour With Most Chirps</th>
+            <th scope="col">Most Active Account</th>
+        </tr>
+    </thead>
+    <tbody>
+        <tr class="table-primary">
+            <th class="text-primary" scope="row"></th>
+            <td>"@mostPopular.First().Key"</td>
+            <td>@hourData.First():00 with @hourData.Last() messages</td>
+            <td>@mostActiveUser.First() with @mostActiveUser.Last() messages</td>
+    </tbody>
+</table>
+
+@*@foreach(var word in mostPopular)
 {
     <p>@word.Key: @word.Count()</p>
-}
+}*@
+
+<div class="text-center" style="margin-top:100px">
+    <h1>More stats are under construction, thank you for your patience</h1>
+    <h2>- The Chirp Team</h2>
+</div>

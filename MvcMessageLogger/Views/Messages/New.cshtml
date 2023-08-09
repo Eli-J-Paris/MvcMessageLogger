@@ -1,10 +1,13 @@
 ﻿@model User
-<h1>Chirp</h1>
 <form method="post" action="/users/account/@Model.Id">
-    <div class="form-group">
-        <label for="exampleTextarea" class="form-label mt-4">Example textarea</label>
-        <textarea class="form-control" id="exampleTextarea" rows="3" name="Content"></textarea>
+    <div class="col-md-6 offset-lg-3 align-middle" style="margin-top: 50px">
+        <h1 class="offset-lg-5 align-middle">Chirp</h1>
+        @*<label for="exampleTextarea" class="form-label mt-4">Example textarea</label>*@
+        <textarea class="form-control" id="exampleTextarea" rows="5" maxlength="255" placeholder="new chirp" name="Content"></textarea>
     </div>
-    <button type="submit">Chirp</button>
+    <br />
+    <div class="d-grid gap-2">
+        <button type="submit" class="btn btn-lg btn-primary col-md-6 offset-lg-3 align-middle" type="button" fdprocessedid="k0n2h">Post</button>
+    </div>
 </form>
 

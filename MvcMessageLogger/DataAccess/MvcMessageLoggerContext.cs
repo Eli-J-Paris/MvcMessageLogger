@@ -61,5 +61,23 @@ namespace MvcMessageLogger.DataAccess
             }
             return listToShuffle;
         }
+
+        public List<string> MostActiveUser()
+        {
+            List<string> mostActiveUser = new List<string>{"another baindaid"};
+            int bandaid = 0;
+            var users = Users.Where(u => u.Messages.Count > 0).Include(u => u.Messages).ToList();
+
+            foreach(var user in users)
+            {
+                if (user.Messages.Count() > bandaid)
+                {
+                    bandaid = user.Messages.Count();
+                    mostActiveUser[0] = user.UserName;
+                }
+            }
+            mostActiveUser.Add(bandaid.ToString());
+            return mostActiveUser;
+        }
     }
 }
