@@ -10,6 +10,7 @@ using System.Threading.Tasks;
 
 namespace MvcMessageLogger.FeatureTests
 {
+    [Collection("Controller Tests")]
     public class MessagesControllerTests : IClassFixture<WebApplicationFactory<Program>>
     {
         private readonly WebApplicationFactory<Program> _factory;
@@ -46,7 +47,7 @@ namespace MvcMessageLogger.FeatureTests
             var html = await response.Content.ReadAsStringAsync();
 
             Assert.Contains("<form method=\"post\" action=\"/users/account/1\">", html);
-            Assert.Contains("<textarea id=\"Content\" name=\"Content\" maxlength=\"255\"></textarea>", html);
+            Assert.Contains("<textarea class=\"form-control\" id=\"exampleTextarea\" rows=\"5\" maxlength=\"255\" placeholder=\"new chirp\" name=\"Content\"></textarea>\r\n", html);
         }
 
         [Fact]

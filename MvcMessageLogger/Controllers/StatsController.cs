@@ -20,7 +20,7 @@ namespace MvcMessageLogger.Controllers
         {
             var users = _context.Users.Include(u => u.Messages).ToList();
 
-            string mostPopularWord = _context.MostPopularWord();
+            var mostPopularWord = _context.MostPopularWord();
             ViewData["MostPopularWord"] = mostPopularWord;
             ViewData["HourWithMostMessages"] = _context.HourWithMostMessages();
             ViewData["MostActiveUser"] = _context.MostActiveUser();

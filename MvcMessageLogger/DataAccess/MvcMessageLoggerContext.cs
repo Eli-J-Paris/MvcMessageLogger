@@ -11,7 +11,7 @@ namespace MvcMessageLogger.DataAccess
         public MvcMessageLoggerContext(DbContextOptions<MvcMessageLoggerContext> options)
             : base(options) { }
 
-        public string MostPopularWord()
+        public IGrouping<string,string> MostPopularWord()
         {
             var messages = Messages;
 
@@ -23,7 +23,7 @@ namespace MvcMessageLogger.DataAccess
             }
             char[] delimiterChars = { ' ', ',', '.', ':', '\t' };
             string[] allwords = words.Split(delimiterChars);
-            string mostPopular = allwords.GroupBy(s => s).OrderByDescending(g => g.Count()).ToList().First().ToString();
+            var mostPopular = allwords.GroupBy(s => s).OrderByDescending(g => g.Count()).ToList().First();
 
             return mostPopular;
         }

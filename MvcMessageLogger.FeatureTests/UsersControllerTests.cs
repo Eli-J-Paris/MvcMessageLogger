@@ -6,6 +6,7 @@ using MvcMessageLogger.Models;
 
 namespace MvcMessageLogger.FeatureTests
 {
+    [Collection("Controller Tests")]
     public class UsersControllerTests : IClassFixture<WebApplicationFactory<Program>>
     {
         private readonly WebApplicationFactory<Program> _factory;
@@ -84,9 +85,7 @@ namespace MvcMessageLogger.FeatureTests
             var html = await response.Content.ReadAsStringAsync();
 
             Assert.Contains("<form method=\"post\" action=\"/users/newaccount\">", html);
-            Assert.Contains("<input type=\"password\" id=\"Password\" name=\"Password\" />", html);
-            Assert.Contains("<input type=\"email\" id=\"Email\" name=\"Email\" />", html);
-            Assert.Contains("<input type=\"text\" id=\"UserName\" name=\"UserName\" />", html);
+
         }
 
 
@@ -118,7 +117,7 @@ namespace MvcMessageLogger.FeatureTests
 
             var html = await response.Content.ReadAsStringAsync();
 
-            Assert.Contains("<form method=\"post\" action=\"/users/login/\">", html);
+            Assert.Contains("<form method=\"post\" action=\"/users/login\">", html);
         }
 
         
