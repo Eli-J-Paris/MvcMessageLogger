@@ -1,19 +1,38 @@
-﻿@model User
+﻿@*add a view data for weather or not one can add a new messageso when people vist others pages they gucci*@
 
-@*<link rel="stylesheet" href="~/css/VaporTheme.css" />
-<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.1/dist/js/bootstrap.bundle.min.js" integrity="sha384-HwwvtgBNo3bZJJLYd8oVXjrBZt8cqVSpeBNS5n7C8IVInixGAoxmnlMuBnhbgrkm" crossorigin="anonymous"></script>
+@model User
 
-@{
-    Layout = null;
-}*@
+<div style="margin-top:20px; margin-bottom:20px;">
+    <h1 style="display:inline-block;margin-right:10px;">@Model.UserName's ChIrp page</h1>
+    <a href="/users/account/@Model.Id/newmessage" style="display:inline-block; float:right; margin-right:60px;">
+        <button type="button" class="btn btn-primary btn-lg" fdprocessedid="0bpb3">ChIrp</button>
+     </a>
+</div>
 
+@if(Model.Messages.Count == 0)
+{
+    <h4 class="text-center">
+         Hello and a big virtual high-five from all of us at Chirp! Thank you for making an account with us! We're thrilled to have you join our buzzing community of Chirpers, trendsetters, and digital storytellers.
 
-<h1>Welcome @Model.UserName to your Chirp page</h1>
-<p class="p-5 bg-primary">add a message</p>
+         Get ready to share your thoughts, explore new perspectives, and connect with people from all walks of life. Whether you're here to laugh, learn, or simply express yourself in 255 characters or less, this is your canvas to paint with words and ideas.
+    </h4>
+    <br />
+    <h4 class="text-center">When you are ready write a Chirp for the world to see. . . and dont forget to update your profile!</h4>
+}
 
 @foreach(var message in Model.Messages)
 {
-    <p>@message.Content</p>
+    <div>
+        <br/>
+        <figure class="text-center">
+            <blockquote class="blockquote">
+                <p class="mb-0">"@message.Content"</p>
+            </blockquote>
+            <figcaption class="blockquote-footer">
+                @message.CreatedAt.ToLocalTime().ToShortTimeString() <cite title="Source Title"></cite>
+            </figcaption>
+        </figure>
+        <br />
+    </div>  
 }
 
-<a href="/users/account/@Model.Id/newmessage">Add message</a>

@@ -22,6 +22,8 @@ namespace MvcMessageLogger.Controllers
         public IActionResult New(int userId)
         {
             var user = _context.Users.Find(userId);
+            ViewData["ProfileID"] = userId;
+
             return View(user);
         }
 

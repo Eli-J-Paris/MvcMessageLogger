@@ -2,6 +2,7 @@
 using System;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 using MvcMessageLogger.DataAccess;
 using Npgsql.EntityFrameworkCore.PostgreSQL.Metadata;
@@ -11,9 +12,11 @@ using Npgsql.EntityFrameworkCore.PostgreSQL.Metadata;
 namespace MvcMessageLogger.Migrations
 {
     [DbContext(typeof(MvcMessageLoggerContext))]
-    partial class MvcMessageLoggerContextModelSnapshot : ModelSnapshot
+    [Migration("20230808173054_UserDetails")]
+    partial class UserDetails
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        /// <inheritdoc />
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder
@@ -65,18 +68,14 @@ namespace MvcMessageLogger.Migrations
                         .HasColumnType("text")
                         .HasColumnName("bio");
 
-                    b.Property<string>("BirthDay")
-                        .HasColumnType("text")
+                    b.Property<DateTime?>("BirthDay")
+                        .HasColumnType("timestamp with time zone")
                         .HasColumnName("birth_day");
 
                     b.Property<string>("Email")
                         .IsRequired()
                         .HasColumnType("text")
                         .HasColumnName("email");
-
-                    b.Property<string>("Location")
-                        .HasColumnType("text")
-                        .HasColumnName("location");
 
                     b.Property<string>("Name")
                         .HasColumnType("text")
@@ -91,6 +90,10 @@ namespace MvcMessageLogger.Migrations
                         .IsRequired()
                         .HasColumnType("text")
                         .HasColumnName("user_name");
+
+                    b.Property<string>("location")
+                        .HasColumnType("text")
+                        .HasColumnName("location");
 
                     b.HasKey("Id")
                         .HasName("pk_users");

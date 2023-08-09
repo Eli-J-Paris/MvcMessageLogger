@@ -1,0 +1,17 @@
+﻿@model User
+@{
+    Layout = null;
+}
+<link rel="stylesheet" href="~/css/VaporTheme.css" />
+<div class="col-md-6 offset-lg-3 align-middle text-center" style="margin-top: 25px">
+    <h1>Are you sure you want to delete your account?</h1>
+    <br />
+        <div class="d-grid gap-2">
+             <a href="/users/account/@Model.Id/profile"><button class="btn btn-lg btn-primary"  fdprocessedid="01ckw">Keep Account</button></a>
+        </div>
+    <br />
+    <form method="post" action="/users/@Model.Id/delete">
+        <button class="btn btn-lg btn-primary" type="submit" fdprocessedid="01ckw">Delete Account</button>
+    </form>
+
+</div>

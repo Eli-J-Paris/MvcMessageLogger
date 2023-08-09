@@ -13,15 +13,15 @@
     <form method="post" action="/users/newaccount">
         <div class="form-group">
             <label for="exampleInputPassword1" class="form-label mt-4">Username</label>
-            <input type="text" class="form-control" id="exampleInputPassword1" placeholder="Password" autocomplete="off" fdprocessedid="yrgqom" name="UserName">
+            <input type="text" class="form-control" id="exampleInputPassword1" placeholder=" Eneter username" autocomplete="off" fdprocessedid="yrgqom" required name="UserName">
         </div>
         <div class="form-group  ">
             <label for="exampleInputEmail1" class="form-label mt-4">Email address</label>
-            <input type="email" class="form-control" id="exampleInputEmail1" aria-describedby="emailHelp" placeholder="Enter email" fdprocessedid="kydy1k" name="Email">
+            <input type="email" class="form-control" id="exampleInputEmail1" aria-describedby="emailHelp" placeholder="Enter email" fdprocessedid="kydy1k" required name="Email">
         </div>
         <div class="form-group">
             <label for="exampleInputPassword1" class="form-label mt-4">Password</label>
-            <input type="password" class="form-control" id="exampleInputPassword1" placeholder="Password" autocomplete="off" fdprocessedid="yrgqom" name="Password">
+            <input type="password" class="form-control" id="exampleInputPassword1" placeholder=" Enter password" autocomplete="off" fdprocessedid="yrgqom" required name="Password">
         </div>
         <br />
         @if (failedSignin == true)
@@ -32,27 +32,14 @@
             <button class="btn btn-lg btn-primary" type="submit" fdprocessedid="01ckw">Create Account</button>
         </div>
     </form>
+
+
 </div>
-@*<form method="post" action="/users/newaccount">
-    <div>
-        <label for="UserName">UserName</label>
-        <input type="text" id="UserName" name="UserName" />
+@if (failedSignin == true)
+{
+    <div class="col-md-6 offset-lg-3 align-middle">
+        <a class="justify-content-center" href="/users/login">Sign in</a>
     </div>
-    <div>
-        <label for="Email">Email</label>
-        <input type="email" id="Email" name="Email" />
-    </div>
-    <div>
-        <label for="Password">Password</label>
-        <input type="password" id="Password" name="Password" />
-    </div>
-        @if (failedSignin == true)
-        {
-            <p class="text-danger">An account with that email address already exists</p>
-        }
-    <div>
-        <button type="submit">Submit</button>
-    </div>
-</form>*@
+}
 
 
