@@ -46,13 +46,13 @@
                         </a>
                         <div class="dropdown-menu">
                             <a class="dropdown-item " href="/users/account/@profileId/profile">Profile</a>
-                            <a class="dropdown-item" href="/stats">Chirp Stats</a>
+                            <a class="dropdown-item" href="/users/account/@profileId/stats">Chirp Stats</a>
                             <div class="dropdown-divider"></div>
                             <a class="dropdown-item" href="/users/login">Sign Out</a>
                         </div>
                     </li>
-                    <form class="d-flex">
-                    <input class="form-control me-sm-2" type="search" placeholder="Search">
+                    <form class="d-flex" action="/users/account/@profileId/searchusers">
+                        <input class="form-control me-sm-2" type="search" placeholder="Find Friends" name="q">
                     <button class="btn btn-secondary my-2 my-sm-0" type="submit" fdprocessedid="sl1l5i">Search</button>
                     </form>
                 </div>

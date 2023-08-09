@@ -163,5 +163,24 @@ namespace MvcMessageLogger.Controllers
             _context.SaveChanges();
             return Redirect("/users/login");
         }
+
+        [Route("/users/account/{userId:int}/searchusers")]
+        public IActionResult SearchUser(int userId, string q)
+        {
+            var users = _context.Users.Where(u => u.UserName.Contains(q)).ToList();
+            ViewData["LoggedinAccount"] = userId;
+            ViewData["ProfileID"] = userId;
+            return View(users);
+        }
+
+        [Route("/users/account/{userId:int}/viewprofile/{accountId:int}")]
+        public IActionResult ViewProfile(int userId, int accountId)
+        {
+            var user = _context.Users.Where(u => u.Id == accountId).Include(u => u.Messages).First();
+            ViewData["ProfileID"] = userId;
+
+            return View(user);
+        }
+
     }
 }

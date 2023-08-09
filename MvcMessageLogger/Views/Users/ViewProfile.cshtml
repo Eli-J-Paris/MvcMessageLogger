@@ -1,0 +1,43 @@
+﻿@model User
+<div style="margin-top:20px; margin-bottom:20px;">
+    <h1 style="display:inline-block;margin-right:10px;">@Model.UserName's Chirp Page</h1>
+</div>
+
+<div>
+    <h2>Name</h2>
+    <p class="mb-0">@Model.Name</p>
+</div>
+<br />
+<div>
+    <h2>Birth Day</h2>
+    <p class="mb-0">@Model.BirthDay</p>
+</div>
+<br />
+<div>
+    <h2>Location</h2>
+    <p class="mb-0">@Model.Location</p>
+</div>
+<br />
+<div>
+    <h2>Bio</h2>
+    <p class="mb-0">@Model.Bio</p>
+</div>
+<br />
+<br />
+<br />
+<h1 class="text-center text-decoration-underline">Chirps</h1>
+@foreach (var message in Model.Messages)
+{
+    <div>
+        <br />
+        <figure class="text-center">
+            <blockquote class="blockquote">
+                <p class="mb-0">"@message.Content"</p>
+            </blockquote>
+            <figcaption class="blockquote-footer">
+                @message.CreatedAt.ToLocalTime().ToShortTimeString() <cite title="Source Title"></cite>
+            </figcaption>
+        </figure>
+        <br />
+    </div>
+}
