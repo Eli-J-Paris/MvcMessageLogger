@@ -1,0 +1,14 @@
+﻿@model List<User>
+@{
+    int? loggedinAccount = ViewData["LoggedinAccount"] as int?;
+}
+<h1>Chirp Accounts</h1>
+
+<ul>
+    @foreach (var user in Model)
+    {
+        <li>
+            <a href="/users/account/@loggedinAccount/viewprofile/@user.Id" style="text-decoration:none;"><h3 style="margin: 15px">@user.UserName</h3> </a>
+        </li>
+    }
+</ul>

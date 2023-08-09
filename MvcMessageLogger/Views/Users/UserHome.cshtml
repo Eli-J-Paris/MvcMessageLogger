@@ -26,7 +26,7 @@
         <br/>
         <figure class="text-center">
             <blockquote class="blockquote">
-                <p class="mb-0">"@message.Content"</p>
+                <a href="/users/account/@Model.Id/edit/@message.Id" style="text-decoration:none;"><p class="mb-0">"@message.Content"</p></a>
             </blockquote>
             <figcaption class="blockquote-footer">
                 @message.CreatedAt.ToLocalTime().ToShortTimeString() <cite title="Source Title"></cite>
