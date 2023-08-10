@@ -10,6 +10,7 @@ using System.Threading.Tasks;
 
 namespace MvcMessageLogger.FeatureTests
 {
+    [Collection("Controller Tests")]
     public class MessagesControllerTests : IClassFixture<WebApplicationFactory<Program>>
     {
         private readonly WebApplicationFactory<Program> _factory;
@@ -46,7 +47,7 @@ namespace MvcMessageLogger.FeatureTests
             var html = await response.Content.ReadAsStringAsync();
 
             Assert.Contains("<form method=\"post\" action=\"/users/account/1\">", html);
-            Assert.Contains("<textarea id=\"Content\" name=\"Content\" maxlength=\"255\"></textarea>", html);
+            Assert.Contains("<textarea class=\"form-control\" id=\"exampleTextarea\" rows=\"5\" maxlength=\"255\" placeholder=\"new chirp\" name=\"Content\"></textarea>\r\n", html);
         }
 
         [Fact]
@@ -70,5 +71,73 @@ namespace MvcMessageLogger.FeatureTests
             Assert.Contains("hello world", html);
         }
 
+        [Fact]
+        public async Task EditMessage_DisplaysFormToEditAMessage()
+        {
+            var client = _factory.CreateClient();
+            var context = GetDbContext();
+            var user = new User { UserName = "eli", Email = "eli@Yahoo.com", Password = "password123" };
+            var message = new Message { Content = "hello", CreatedAt = DateTime.Now.ToUniversalTime() };
+            user.Messages.Add(message);
+            context.Users.Add(user);
+            context.SaveChanges();
+
+            var response = await client.GetAsync($"/users/account/{user.Id}/edit/{message.Id}");
+            response.EnsureSuccessStatusCode();
+
+            var html = await response.Content.ReadAsStringAsync();
+
+            Assert.Contains("Save Edits", html);
+        }
+
+        [Fact]
+        public async Task Update_UpdatesAMessage()
+        {
+            var client = _factory.CreateClient();
+            var context = GetDbContext();
+            var user = new User { UserName = "eli", Email = "eli@Yahoo.com", Password = "password123" };
+            var message = new Message { Content = "hello", CreatedAt = DateTime.Now.ToUniversalTime() };
+            user.Messages.Add(message);
+            context.Users.Add(user);
+            context.SaveChanges();
+
+            var formData = new Dictionary<string, string>
+            {
+                {"Content","hello world" },
+                {"CreatedAt","01-01-02" }
+            };
+
+            var response = await client.PostAsync($"/users/account/{user.Id}/edit/{message.Id}", new FormUrlEncodedContent(formData));
+            response.EnsureSuccessStatusCode();
+
+            var html = await response.Content.ReadAsStringAsync();
+
+            Assert.Contains("hello world", html);
+        }
+
+        [Fact]
+        public async Task Delete_RemovesAMessageFromDataBase()
+        {
+            var client = _factory.CreateClient();
+            var context = GetDbContext();
+            var user = new User { UserName = "eli", Email = "eli@Yahoo.com", Password = "password123" };
+            var message = new Message { Content = "hello", CreatedAt = DateTime.Now.ToUniversalTime() };
+            user.Messages.Add(message);
+            context.Users.Add(user);
+            context.SaveChanges();
+
+            var formData = new Dictionary<string, string>
+            {
+
+            };
+
+            var response = await client.PostAsync($"/users/account/{user.Id}/delete/{message.Id}", new FormUrlEncodedContent(formData));
+            response.EnsureSuccessStatusCode();
+
+            var html = await response.Content.ReadAsStringAsync();
+
+            Assert.DoesNotContain("hello", html);
+            Assert.Contains("eli's", html);
+        }
     }
 }
