@@ -11,17 +11,16 @@
         }
 
     }
-    char[] delimiterChars = { ' ', ',', '.', ':', '\t' };
+    char[] delimiterChars = { ' ', ',', '.', ':', '\t'};
     string[] words = listOfWords.Split(delimiterChars);
 
     var mostPopular = words.GroupBy(s => s).OrderByDescending(g => g.Count());
-
-
+    
+}
+@{
     List<int> hourData = ViewData["HourWithMostMessages"] as List<int>;
     List<string> mostActiveUser = ViewData["MostActiveUser"] as List<string>;
 }
-
-
 <table class="table table-hover" style="margin-top:25px;">
     <thead>
         <tr>
@@ -34,7 +33,7 @@
     <tbody>
         <tr class="table-primary">
             <th class="text-primary" scope="row"></th>
-            <td>"@mostPopular.First().Key"</td>
+            <td class="text-danger">@mostPopular.Last().ElementAt(1)</td>
             <td>@hourData.First():00 with @hourData.Last() messages</td>
             <td>@mostActiveUser.First() with @mostActiveUser.Last() messages</td>
     </tbody>
