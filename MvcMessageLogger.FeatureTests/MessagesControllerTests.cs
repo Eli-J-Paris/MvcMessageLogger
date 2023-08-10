@@ -71,5 +71,73 @@ namespace MvcMessageLogger.FeatureTests
             Assert.Contains("hello world", html);
         }
 
+        [Fact]
+        public async Task EditMessage_DisplaysFormToEditAMessage()
+        {
+            var client = _factory.CreateClient();
+            var context = GetDbContext();
+            var user = new User { UserName = "eli", Email = "eli@Yahoo.com", Password = "password123" };
+            var message = new Message { Content = "hello", CreatedAt = DateTime.Now.ToUniversalTime() };
+            user.Messages.Add(message);
+            context.Users.Add(user);
+            context.SaveChanges();
+
+            var response = await client.GetAsync($"/users/account/{user.Id}/edit/{message.Id}");
+            response.EnsureSuccessStatusCode();
+
+            var html = await response.Content.ReadAsStringAsync();
+
+            Assert.Contains("Save Edits", html);
+        }
+
+        [Fact]
+        public async Task Update_UpdatesAMessage()
+        {
+            var client = _factory.CreateClient();
+            var context = GetDbContext();
+            var user = new User { UserName = "eli", Email = "eli@Yahoo.com", Password = "password123" };
+            var message = new Message { Content = "hello", CreatedAt = DateTime.Now.ToUniversalTime() };
+            user.Messages.Add(message);
+            context.Users.Add(user);
+            context.SaveChanges();
+
+            var formData = new Dictionary<string, string>
+            {
+                {"Content","hello world" },
+                {"CreatedAt","01-01-02" }
+            };
+
+            var response = await client.PostAsync($"/users/account/{user.Id}/edit/{message.Id}", new FormUrlEncodedContent(formData));
+            response.EnsureSuccessStatusCode();
+
+            var html = await response.Content.ReadAsStringAsync();
+
+            Assert.Contains("hello world", html);
+        }
+
+        [Fact]
+        public async Task Delete_RemovesAMessageFromDataBase()
+        {
+            var client = _factory.CreateClient();
+            var context = GetDbContext();
+            var user = new User { UserName = "eli", Email = "eli@Yahoo.com", Password = "password123" };
+            var message = new Message { Content = "hello", CreatedAt = DateTime.Now.ToUniversalTime() };
+            user.Messages.Add(message);
+            context.Users.Add(user);
+            context.SaveChanges();
+
+            var formData = new Dictionary<string, string>
+            {
+
+            };
+
+            var response = await client.PostAsync($"/users/account/{user.Id}/delete/{message.Id}", new FormUrlEncodedContent(formData));
+            response.EnsureSuccessStatusCode();
+
+            var html = await response.Content.ReadAsStringAsync();
+
+            Assert.DoesNotContain("hello", html);
+            Assert.Contains("eli's", html);
+        }
     }
 }
