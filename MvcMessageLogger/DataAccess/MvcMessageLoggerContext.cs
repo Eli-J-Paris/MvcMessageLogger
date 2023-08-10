@@ -21,7 +21,8 @@ namespace MvcMessageLogger.DataAccess
             {
                 words += " " + message.Content.ToLower();
             }
-            char[] delimiterChars = { ' ', ',', '.', ':', '\t' };
+            
+            char[] delimiterChars = { ' ', ',', '.', ':', '\t','\"' };
             string[] allwords = words.Split(delimiterChars);
             var mostPopular = allwords.GroupBy(s => s).OrderByDescending(g => g.Count()).ToList().First();
 

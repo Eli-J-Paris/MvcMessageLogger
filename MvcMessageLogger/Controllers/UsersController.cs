@@ -168,6 +168,7 @@ namespace MvcMessageLogger.Controllers
         public IActionResult SearchUser(int userId, string q)
         {
             var users = _context.Users.Where(u => u.UserName.Contains(q)).ToList();
+
             ViewData["LoggedinAccount"] = userId;
             ViewData["ProfileID"] = userId;
             return View(users);
