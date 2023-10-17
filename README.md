@@ -1,7 +1,7 @@
 # Chirp
 Chirp is a message logging application similar to Twitter where you can make posts and see posts from other users. (please note it is current state, chirp is a local only application, but online functionailty can be similualted)
 <img width="950" alt="image" src="https://github.com/Eli-J-Paris/MvcMessageLogger/assets/130601227/9a123859-b7b4-4755-8c65-a02af657408e">
-
+*A Users home page where they can see all the posts/Chirps they have made*
 ## Set Up
 Pre Requisites: have Mircorsoft Visual Studio and PGAdmin installed and set up on your machine
 1. Make a fork of this repo and make a clone of it in Visual Studio
