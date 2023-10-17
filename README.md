@@ -1,5 +1,5 @@
 # Chirp
-Chirp is a message logging application similar to Twitter where you can make posts and see posts from other users. (please note chirp is currently a local only application)
+Chirp is a message logging application similar to Twitter where you can make posts and see posts from other users. (please note it is current state, chirp is a local only application, but online functionailty can be similualted)
 
 ## Set Up
 Pre Requisites: have Mircorsoft Visual Studio and PGAdmin installed and set up on your machine
@@ -8,4 +8,10 @@ Pre Requisites: have Mircorsoft Visual Studio and PGAdmin installed and set up o
 3. Thats it you are ready to start using Chirp!
 
 ## Context
-This was a 3 day long school project Where I was able to take the last 
+This was a 3 day long solo school project to showcase the last 4 and a half months of studying c#.net, SQL, ASP.net, html & CSS. A full list of the Tech Stack used can be found below.
+
+##Future Additons
+- the ability to follow accounts
+- The ability to like and comment on other peoples posts/Chirps
+- Encrpt passwords
+- secure HTTP Routes so users accounts can't be accessed maliciously
