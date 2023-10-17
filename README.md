@@ -5,9 +5,9 @@ Chirp is a message logging application similar to Twitter where you can make pos
 *A Users home page where they can see all the Chirps they have made.*
 ## Set Up
 Pre Requisites: have Mircorsoft Visual Studio and PGAdmin installed and set up on your machine
-1. Make a fork of this repo and make a clone of it in Visual Studio
-2. in visual studio naviagate to tools -> NuGet package manager -> Package Manager Console -> run `update-database` in the package manager console.
-3. In appsettings.json in the MVCMessageLogger Project(Not the test project) update the database connection string to connect to your database 
+1. Make a clone of this repo and open it in Visual Studio.
+2. In visual studio naviagate to tools -> NuGet package manager -> Package Manager Console -> run `update-database` in the package manager console.
+3. In appsettings.json in the MVCMessageLogger Project(Not the test project) update the database connection string to connect to your database.
 4. Thats it you are ready to start using Chirp!
 
 ## Context
