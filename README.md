@@ -10,7 +10,7 @@ Pre Requisites: have Mircorsoft Visual Studio and PGAdmin installed and set up o
 3. Thats it you are ready to start using Chirp!
 
 ## Context
-This was a 3 day long solo school project to showcase the last 4 and a half months of studying c#.net, SQL, ASP.net, html, CSS. A full list of the Tech Stack used can be found below.
+This was a 3 day long solo school project to showcase the last 4 and a half months of studying c#.net, SQL, ASP.net, html & CSS. A full list of the Tech Stack used can be found below.
 
 ## Wins & Challenges
 #### Wins
@@ -18,10 +18,10 @@ This was a 3 day long solo school project to showcase the last 4 and a half mont
 - Fully feature tested
 - Ability to view other users accounts and Chirps
 #### Challenges
-- only 3 days of work time
-- keeping up with tests during development
+- Only 3 days of work time
+- Keeping up with tests during development
 - Achieveing a clean UI/UX with CSS
-- lack of security
+- Lack of security
   
 ## Future Additons
 - The ability to follow accounts
